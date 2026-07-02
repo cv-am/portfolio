@@ -640,16 +640,20 @@ footer{
 }
 
 /* ===================================================== */
-/* responsive */
+/* responsive                                            */
 /* ===================================================== */
 
+/* --- tablet (1024px) --- */
 @media (max-width: 1024px){
-    #me{ width: 400px; height: 500px; right: 0%; }
+    #me{ width: 400px; height: 500px; right: 0; }
     #circle, #shadow{ width: 340px; height: 340px; right: 4%; }
     .projects-grid{ grid-template-columns: repeat(2, 1fr); }
 }
 
+/* --- mobile (880px) --- */
 @media (max-width: 880px){
+
+    /* ---- mobile menu ---- */
     #menu{
         position: fixed;
         top: 76px;
@@ -665,29 +669,61 @@ footer{
         transform: translateX(100%);
         transition: transform 0.3s ease;
         border-left: 1px solid var(--border);
+        z-index: 199;
     }
     #menu.open{ transform: translateX(0); }
-    #menu a.cta{ width: 100%; justify-content: center; }
+    #menu a{ font-size: 16px; }
+    #menu a.cta{ width: 100%; text-align: center; display: block; padding: 12px 18px; }
     .burger{ display: flex; }
 
-    #hero{ padding-top: 100px; min-height: auto; padding-bottom: 60px; }
-    .hero-inner{ position: static; }
+    /* ---- hero: stack vertically ---- */
+    #hero{
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 96px;
+        padding-bottom: 56px;
+        min-height: auto;
+        overflow: visible;
+    }
+
+    /* text block sits above image */
+    .hero-inner{
+        position: static;
+        order: 1;
+        padding: 0 20px;
+    }
+
+    /* photo + glow: stacked below text, centred */
     #me{
         position: relative;
-        right: auto;
-        margin: 40px auto 0;
-        width: 320px;
-        height: 380px;
+        order: 2;
+        right: auto; bottom: auto;
+        width: 260px;
+        height: 300px;
+        margin: 32px auto 0;
+        z-index: 2;
     }
+
+    /* circle and shadow: absolute inside #hero, centred around the photo area */
     #circle, #shadow{
-        right: 50%;
-        top: 60px;
-        transform: translateX(50%);
-        width: 280px;
-        height: 280px;
+        width: 240px;
+        height: 240px;
+        /* place them centred horizontally, below the text */
+        left: 50%;
+        right: auto;
+        top: auto;
+        bottom: 0;
+        transform: translateX(-50%);
     }
-    #hello h1{ max-width: 100%; }
+
+    #hello h1{ max-width: 100%; font-size: clamp(34px, 8vw, 52px); }
+    #hello p.tagline{ font-size: 15px; max-width: 100%; }
+    .btn-row{ gap: 12px; }
+    .btn{ height: 44px; padding: 0 20px; font-size: 13px; }
     .scroll-cue{ display: none; }
+
+    /* ---- sections ---- */
+    .section{ padding: 72px 0; }
 
     #about .grid,
     .contact-grid{
@@ -696,13 +732,50 @@ footer{
     }
 
     .projects-grid{ grid-template-columns: 1fr; }
+
+    /* stat row: 3-col on medium mobile */
+    #history{
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+    .stat h3{ font-size: 26px; }
+
+    /* contact links: allow wrapping, smaller font */
+    .contact-links{ font-size: 13px; }
+    .contact-links a{ word-break: break-all; }
+
+    /* contact form full width */
+    form .btn{ width: 100%; justify-content: center; }
 }
 
+/* --- small mobile (520px) --- */
 @media (max-width: 520px){
-    .wrap{ padding: 0 20px; }
-    #logo{ font-size: 18px; }
-    #hello h1{ font-size: 38px; }
+    .wrap{ padding: 0 18px; }
+    #nav{ padding: 0 18px; }
+
+    #logo{ font-size: 19px; }
+
+    #me{ width: 220px; height: 260px; }
+    #circle, #shadow{ width: 200px; height: 200px; }
+
+    #hello h1{ font-size: 34px; }
+    #hello h2{ font-size: 18px; }
+
+    .section{ padding: 56px 0; }
+
+    /* stats: single column on tiny screens */
     #history{ grid-template-columns: 1fr; gap: 18px; }
-    .marquee span{ font-size: 16px; }
-    footer{ flex-direction: column; align-items: flex-start; }
+
+    .service-item{ font-size: 16px; }
+
+    .section-head h2{ font-size: 28px; }
+    #about h2, #contact h2{ font-size: 26px !important; }
+
+    .marquee span{ font-size: 15px; }
+    .marquee{ gap: 40px; }
+
+    footer{ flex-direction: column; align-items: flex-start; gap: 12px; }
+    .footer-socials{ gap: 14px; }
+
+    #top-btn{ bottom: 18px; right: 18px; width: 40px; height: 40px; font-size: 16px; }
 }
