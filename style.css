@@ -696,6 +696,7 @@ footer{
     /* photo + glow: stacked below text, centred */
     #me{
         position: relative;
+        top: 60px;
         order: 2;
         right: auto; bottom: auto;
         width: 260px;
@@ -755,7 +756,7 @@ footer{
 
     #logo{ font-size: 19px; }
 
-    #me{ width: 220px; height: 260px; }
+    #me{ width: 220px; height: 260px;}
     #circle, #shadow{ width: 200px; height: 200px; }
 
     #hello h1{ font-size: 34px; }
